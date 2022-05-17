@@ -19,7 +19,6 @@ def center_text(img,font,text1,text2,fill1,fill2):
     draw.text(p1, text1, fill=fill1, font=font) # draw text on top of image
     draw.text(p2, text2, fill=fill2, font=font) # draw text on top of image
     draw.text(p2, text2, fill=fill2, font=font) # draw text on top of image
-    # draw.text(90,90, "tauseed2aman", fill=fill2, font=font) # draw text on top of image
     return img
 
 def add_text(img,color,text1,text2,logo=False,font='Roboto-Bold.ttf',font_size=75):#change font_size
@@ -32,8 +31,6 @@ def add_text(img,color,text1,text2,logo=False,font='Roboto-Bold.ttf',font_size=7
     img_w, img_h = img.size
     height = img_h // 3
     font = ImageFont.truetype(font,size=font_size)
-    # font_command = ImageFont.truetype(font,size=80)
-    # tauseed_font = ImageFont.truetype(font,size=80)
  
     if logo == False:
         center_text(img,font,text1,text2,p_font,s_font)
@@ -48,8 +45,6 @@ def add_text(img,color,text1,text2,logo=False,font='Roboto-Bold.ttf',font_size=7
 
 def add_logo(background,foreground):
     bg_w, bg_h = background.size
-    # print(background.size)
-    # img_w, img_h =foreground.size
     img_offset = (390, (bg_h //3))#390,160 #
     background.paste(foreground, img_offset, foreground)
     return background
@@ -58,24 +53,19 @@ def write_image(background,color,text1,text2,foreground=''):
     if not foreground:
         add_text(background,color,text1,text2)
     else:
-        # add_text(background,color,text1,text2)
         add_text(background,color,text1,text2,logo=True)
-        # add_logo(background,foreground)
     return background
     
 if __name__ == '__main__':
     with open("commands.json") as command:
         commands=json.load(command)
     list=0
-    # text1 = '> apt-cache'
-    # text2 ="query the APT cache the APT cache th dsf" #'With Python sdfs dfsd sfds dfsd fssd sd s fsdfs df dssd fsd ssd fs'
     tauseedzaman = '@tauseed2aman'
-    img_name = 'featured-image-creation-with-python.png'
     bgcolors=['dark_blue','grey','light_blue','blue','orange','purple','red','yellow','yellow_green','green']
     color = 'dark_blue'
     font = 'Roboto-Bold.ttf'
     
-    foreground = Image.open('logo.png')
+    foreground = Image.open('src/logo.png')
     colors = {
     'dark_blue':{'c':(27,53,81),'p_font':'rgb(255,255,255)','s_font':'rgb(255, 212, 55)'},
     'grey':{'c':(70,86,95),'p_font':'rgb(255,255,255)','s_font':'rgb(93,188,210)'},
@@ -89,26 +79,21 @@ if __name__ == '__main__':
     'green':{'c':(65, 162, 77),'p_font':'rgb(217, 210, 192)','s_font':'rgb(0, 0, 0)'}
     }
     for i,command in enumerate(commands["data"]):
-        bg_image_name=('background-'+str(randint(4,17))+'.jpg')
+        bg_image_name=('src/background-'+str(randint(4,17))+'.jpg')
         background = Image.open(bg_image_name)
         l=len(command["description"])
-        if i == 50:
+        if i == 4:
+            continue
+        if i == 8:
             break
         if l >= 40:
             description=(command["description"].split())
             description.insert(5,"\n")
             description=" ".join(description)
-            # if l >= 80:
-                # description.insert(9,"\n")
-                # description=" ".join(description)
-
 
 
         else:
             description=command["description"]
         background = write_image(background,colors[bgcolors[randint(0,9)]],"$ "+command["command"],description,foreground=foreground)
         background.save("out/"+command["command"]+".png")
-        # background = write_image(background,colors[color],text1,text2,foreground=foreground)
-        # background.save(img_name)
-        # break
         print(description)
