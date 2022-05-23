@@ -82,16 +82,14 @@ if __name__ == '__main__':
         bg_image_name=('src/background-'+str(randint(4,17))+'.jpg')
         background = Image.open(bg_image_name)
         l=len(command["description"])
-        if i < 16:
+        if i < 24:
             continue
-        if i >= 24:
+        if i >= 30:
             break
         if l >= 40:
             description=(command["description"].split())
             description.insert(5,"\n")
             description=" ".join(description)
-
-
         else:
             description=command["description"]
         background = write_image(background,colors[bgcolors[randint(0,9)]],"$ "+command["command"],description,foreground=foreground)
