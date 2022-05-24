@@ -1,3 +1,7 @@
+
+
+file = open("commnd.py","a")
+file.write("""
 #! /usr/bin/env python3
 from random import randint
 from PIL import Image, ImageDraw, ImageFont
@@ -82,9 +86,9 @@ if __name__ == '__main__':
         bg_image_name=('src/background-'+str(randint(4,17))+'.jpg')
         background = Image.open(bg_image_name)
         l=len(command["description"])
-        if i < 30:
+        if i < 24:
             continue
-        if i >= 40:
+        if i >= 30:
             break
         if l >= 40:
             description=(command["description"].split())
@@ -95,3 +99,5 @@ if __name__ == '__main__':
         background = write_image(background,colors[bgcolors[randint(0,9)]],"$ "+command["command"],description,foreground=foreground)
         background.save("out/"+command["command"]+".png")
         print(description)
+
+""")
