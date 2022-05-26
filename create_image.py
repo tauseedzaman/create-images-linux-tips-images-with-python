@@ -82,9 +82,9 @@ if __name__ == '__main__':
         bg_image_name=('src/background-'+str(randint(4,17))+'.jpg')
         background = Image.open(bg_image_name)
         l=len(command["description"])
-        if i < 40:
+        if i <= 50:
             continue
-        if i >= 50:
+        if i >= 60:
             break
         if l >= 40:
             description=(command["description"].split())
