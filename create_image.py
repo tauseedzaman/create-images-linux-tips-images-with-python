@@ -21,7 +21,7 @@ def center_text(img,font,text1,text2,fill1,fill2):
     draw.text(p2, text2, fill=fill2, font=font) # draw text on top of image
     return img
 
-def add_text(img,color,text1,text2,logo=False,font='Roboto-Bold.ttf',font_size=75):#change font_size
+def add_text(img,color,text1,text2,logo=False,font='Roboto-Bold.ttf',font_size=88):#change font_size
     draw = ImageDraw.Draw(img)
  
     s_font = color['p_font']
@@ -82,9 +82,9 @@ if __name__ == '__main__':
         bg_image_name=('src/background-'+str(randint(4,17))+'.jpg')
         background = Image.open(bg_image_name)
         l=len(command["description"])
-        if i <= 60:
+        if i <= 70:
             continue
-        if i >= 70:
+        if i >= 80:
             break
         if l >= 40:
             description=(command["description"].split())
