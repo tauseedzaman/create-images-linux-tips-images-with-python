@@ -83,7 +83,7 @@ def create_message_by_open_api():
 
     headers = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"
+        "Authorization": "Bearer "
     }
 
     command_name = get_command_name()
